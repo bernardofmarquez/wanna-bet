@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Participant {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name String
+  balance Float
+  Bet Bet[]
+}
+
+model Game {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  homeTeamName String 
+  awayTeamName String
+  homeTeamScore Int
+  awayTeamScore Int
+  isFinished Boolean
+  Bet Bet[]
+}
+
+model Bet {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  homeTeamScore Int
+  awayTeamScore Int
+  amountBet Float
+  gameId Int
+  Game Game  @relation(fields: [gameId], references: [id])
+  participantId Int
+  Participant Participant @relation(fields: [participantId], references: [id])
+  status Status @default(PENDING)
+  amountWon Float
+}
+
+enum Status {
+  PENDING 
+  WON 
+  LOST 
+}
