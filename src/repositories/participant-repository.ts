@@ -1,16 +1,37 @@
 import { prisma } from "../config/database";
 
-async function createParticipant(name: string, balance: number) {
+async function create(name: string, balance: number) {
   return prisma.participant.create({
     data: {
       name,
-      balance
+      balance,
     },
   });
 };
 
+async function findOne(id: number) {
+  return prisma.participant.findFirst({
+    where: {
+      id
+    },
+  });
+};
+
+async function updateBalance(id: number, newBalance: number) {
+  return prisma.participant.update({
+    where: {
+      id,
+    },
+    data: {
+      balance: newBalance,
+    },
+  });
+}
+
 const participantRepository = {
-  createParticipant,
+  create,
+  findOne,
+  updateBalance,
 }
 
 export default participantRepository;

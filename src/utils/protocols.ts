@@ -1,4 +1,4 @@
-import { Participant } from '@prisma/client'
+import { Bet, Game, Participant } from '@prisma/client'
 
 export type ApplicationError = {
   name: string;
@@ -6,3 +6,8 @@ export type ApplicationError = {
 };
 
 export type PostParticipantParams = Pick<Participant, 'name' | 'balance'>;
+
+export type PostGameParams = Pick<Game, 'homeTeamName' | 'awayTeamName'>;
+
+export type PostBetParams = Pick<Bet, 'homeTeamScore' | 'awayTeamScore' | 
+  'amountBet' | 'gameId' |'participantId'>

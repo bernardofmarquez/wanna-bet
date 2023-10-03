@@ -7,10 +7,11 @@ export async function postParticipant(req: Request, res: Response) {
   const { name, balance} = req.body as PostParticipantParams;
 
   try {
-    const result = participantService.createParticipant(name, balance);
+    const result = await participantService.createParticipant(name, balance);
 
     return res.status(httpStatus.OK).send(result);
-  } catch (error : any) {
+  } catch (error) {
+    console.log(error)
     return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
