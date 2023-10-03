@@ -110,3 +110,47 @@ $ npm run test
 # run coverage tests
 $ npm run test:coverage
 ```
+## Running with Docker
+
+To run the application using Docker, follow these steps:
+
+1. Modify the `docker-compose.yml` file to match your own database settings:
+
+```yaml
+version: '3'
+services:
+  backend:
+    container_name: wanna-bet
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: **your_username**/wanna-bet-backend
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: **your_db**
+      POSTGRES_USER: **your_postgres_user**
+      POSTGRES_PASSWORD: **your_password**
+    ports:
+      - "5432:5432"
+```
+
+2. In this `docker-compose.yml` file, replace `**your_username**`, `**your_db**`, `**your_postgres_user**`, and `**your_password**` with the corresponding values you want to use for your database.
+
+3. After making these changes, you can run your application using Docker by executing `docker-compose up` in the directory where the `docker-compose.yml` file is located. Make sure you have Docker installed and configured on your machine before proceeding with these steps.
+
+## Running from Docker Hub
+
+If you prefer not to download the repository and want to run the application directly from Docker Hub, use the following command:
+
+```bash
+$ docker run -p 4000:4000 --name wanna-bet-backend marquezin/wanna-bet-backend
+```
