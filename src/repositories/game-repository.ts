@@ -17,9 +17,23 @@ async function findOne(id: number) {
   });
 };
 
+async function update(id : number, homeTeamScore : number, awayTeamScore : number) {
+  return prisma.game.update({
+    where: {
+      id
+    },
+    data: {
+      homeTeamScore,
+      awayTeamScore,
+      isFinished: true,
+    }
+  });
+}
+
 const gameRepository = {
   create,
   findOne,
+  update,
 }
 
 export default gameRepository;

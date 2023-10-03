@@ -43,7 +43,7 @@ model Bet {
   participantId Int
   Participant Participant @relation(fields: [participantId], references: [id])
   status Status @default(PENDING)
-  amountWon Float @default(0)
+  amountWon Float
 }
 
 enum Status {

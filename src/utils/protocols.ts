@@ -11,3 +11,5 @@ export type PostGameParams = Pick<Game, 'homeTeamName' | 'awayTeamName'>;
 
 export type PostBetParams = Pick<Bet, 'homeTeamScore' | 'awayTeamScore' | 
   'amountBet' | 'gameId' |'participantId'>
+
+export type UpdateGameParams = Pick<Game, 'homeTeamScore' | 'awayTeamScore'>;

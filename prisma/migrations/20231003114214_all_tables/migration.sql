@@ -19,9 +19,9 @@ CREATE TABLE "Game" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "homeTeamName" TEXT NOT NULL,
     "awayTeamName" TEXT NOT NULL,
-    "homeTeamScore" INTEGER NOT NULL,
-    "awayTeamScore" INTEGER NOT NULL,
-    "isFinished" BOOLEAN NOT NULL,
+    "homeTeamScore" INTEGER NOT NULL DEFAULT 0,
+    "awayTeamScore" INTEGER NOT NULL DEFAULT 0,
+    "isFinished" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Game_pkey" PRIMARY KEY ("id")
 );
