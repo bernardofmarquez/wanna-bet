@@ -29,3 +29,26 @@ export async function finishGame(req: Request, res: Response) {
     return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
+
+export async function getGames(req: Request, res: Response) {
+  try {
+    const result = await gameService.findAllGames();
+
+    return res.status(httpStatus.OK).send(result);
+  } catch (error) {
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+}
+
+export async function getGameAndBetsById(req: Request, res: Response) {
+  const id : number = Number(req.params.id);
+
+  try {
+    const result = await gameService.findGameAndBets(id);
+
+    return res.status(httpStatus.OK).send(result);
+  } catch (error) {
+    if (error.name === 'NotFoundError') return res.status(httpStatus.NOT_FOUND).send(error);
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+}

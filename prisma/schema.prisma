@@ -15,8 +15,8 @@ model Participant {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name String
-  balance Float
-  Bet Bet[]
+  balance Int
+  bets Bet[]
 }
 
 model Game {
@@ -28,7 +28,7 @@ model Game {
   homeTeamScore Int @default(0)
   awayTeamScore Int @default(0)
   isFinished Boolean @default(false)
-  Bet Bet[]
+  bets Bet[]
 }
 
 model Bet {
@@ -37,13 +37,13 @@ model Bet {
   updatedAt DateTime @updatedAt
   homeTeamScore Int
   awayTeamScore Int
-  amountBet Float
+  amountBet Int
   gameId Int
   Game Game  @relation(fields: [gameId], references: [id])
   participantId Int
   Participant Participant @relation(fields: [participantId], references: [id])
   status Status @default(PENDING)
-  amountWon Float
+  amountWon Int
 }
 
 enum Status {

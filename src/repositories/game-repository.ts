@@ -30,10 +30,27 @@ async function update(id : number, homeTeamScore : number, awayTeamScore : numbe
   });
 }
 
+async function findAll() {
+  return prisma.game.findMany();
+}
+
+async function findOneGameAndBets(id : number) {
+  return prisma.game.findFirst({
+    where: {
+      id,
+    },
+    include: {
+      bets: true
+    }
+  })
+}
+
 const gameRepository = {
   create,
   findOne,
   update,
+  findAll,
+  findOneGameAndBets,
 }
 
 export default gameRepository;

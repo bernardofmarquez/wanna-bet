@@ -35,9 +35,26 @@ async function updateGame(id : number, homeTeamScore : number, awayTeamScore : n
   return gameUpdated;
 }
 
+async function findAllGames() {
+  const games = await gameRepository.findAll();
+
+  return games;
+}
+
+async function findGameAndBets(id : number) {
+  const gameBet = await gameRepository.findOne(id);
+  if (!gameBet) throw notFoundError();
+
+  const gameAndBets = await gameRepository.findOneGameAndBets(id);
+
+  return gameAndBets;
+}
+
 const gameService = {
   createGame,
-  updateGame
+  updateGame,
+  findAllGames,
+  findGameAndBets
 }
 
 export default gameService;

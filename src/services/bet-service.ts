@@ -30,7 +30,7 @@ async function createBet(homeTeamScore : number, awayTeamScore : number,
 async function updateBet(bet : Bet, homeTeamScore : number, 
   awayTeamScore : number, allMoneyBet : number, allMoneyWon : number) {
   if (bet.homeTeamScore === homeTeamScore && bet.awayTeamScore === awayTeamScore) {
-    const amountWon = Number(((bet.amountBet/allMoneyWon)*(allMoneyBet)*0.7).toFixed(2))
+    const amountWon = Number(((bet.amountBet/allMoneyWon)*(allMoneyBet)*0.7).toFixed(0))
     await betRepository.update(bet.id, 'WON', amountWon)
 
     const participantBet = await participantRepository.findOne(bet.participantId);

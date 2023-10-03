@@ -7,7 +7,7 @@ CREATE TABLE "Participant" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
-    "balance" DOUBLE PRECISION NOT NULL,
+    "balance" INTEGER NOT NULL,
 
     CONSTRAINT "Participant_pkey" PRIMARY KEY ("id")
 );
@@ -33,11 +33,11 @@ CREATE TABLE "Bet" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "homeTeamScore" INTEGER NOT NULL,
     "awayTeamScore" INTEGER NOT NULL,
-    "amountBet" DOUBLE PRECISION NOT NULL,
+    "amountBet" INTEGER NOT NULL,
     "gameId" INTEGER NOT NULL,
     "participantId" INTEGER NOT NULL,
     "status" "Status" NOT NULL DEFAULT 'PENDING',
-    "amountWon" DOUBLE PRECISION NOT NULL,
+    "amountWon" INTEGER NOT NULL,
 
     CONSTRAINT "Bet_pkey" PRIMARY KEY ("id")
 );

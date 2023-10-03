@@ -6,8 +6,15 @@ async function createParticipant(name : string, balance: number) {
   return participant;
 }
 
+async function findAllParticipants() {
+  const participants = await participantRepository.findAll();
+
+  return participants;
+}
+
 const participantService = {
   createParticipant,
+  findAllParticipants,
 }
 
 export default participantService;

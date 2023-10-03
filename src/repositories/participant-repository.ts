@@ -26,12 +26,17 @@ async function updateBalance(id: number, newBalance: number) {
       balance: newBalance,
     },
   });
+};
+
+async function findAll() {
+  return prisma.participant.findMany();
 }
 
 const participantRepository = {
   create,
   findOne,
   updateBalance,
+  findAll,
 }
 
 export default participantRepository;
