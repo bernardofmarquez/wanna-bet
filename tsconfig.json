@@ -7,7 +7,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "rootDirs": ["src", "tests"],
+    "rootDirs": ["src", "tests", "prisma"],
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"]
@@ -18,5 +18,5 @@
       }
     ]
   },
-  "include": ["src", "tests"]
+  "include": ["src", "tests", "prisma"]
 }
