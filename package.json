@@ -5,12 +5,13 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run prisma:migrate:deploy && node dist/src/server.js",
+    "start": "npm run prisma:migrate:deploy && npm run prisma:seed && node dist/src/server.js",
     "dev": "cross-env NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r ./src/server.ts' -e ts'",
     "test:load-envs": "dotenv -e .env.test",
     "test": "cross-env NODE_ENV=test jest --passWithNoTests --runInBand",
     "test:coverage": "npm run test:load-envs -- jest -- --coverage --passWithNoTests --runInBand",
-    "prisma:migrate:deploy": "prisma migrate deploy"
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:seed": "prisma db seed"
   },
   "keywords": [],
   "author": "",
